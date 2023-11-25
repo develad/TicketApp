@@ -4,23 +4,28 @@ import DeleteBlock from './DeleteBlock';
 import PriorityDisplay from './PriorityDisplay';
 import ProgressDisplay from './ProgressDisplay';
 import StatusDisplay from './StatusDisplay';
+import { useState, useEffect } from 'react';
 
 const TicketCard = ({ ticket }) => {
-  const formatTimeAndDate = (time) => {
-    return new Intl.DateTimeFormat('he-IL', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      // second: 'numeric',
-      hour12: false,
-    })
-      .format(new Date(time))
-      ?.split(',')
-      ?.reverse()
-      ?.join(' | ');
-  };
+  const [date, setDate] = useState(null);
+
+  useEffect(() => {
+    setDate(
+      new Intl.DateTimeFormat('he-IL', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        // second: 'numeric',
+        hour12: false,
+      })
+        .format(new Date(ticket.createdAt))
+        ?.split(',')
+        ?.reverse()
+        ?.join(' | ')
+    );
+  }, [ticket.createdAt]);
 
   return (
     <div className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
@@ -44,9 +49,7 @@ const TicketCard = ({ ticket }) => {
         <div className="flex-grow"></div>
         <div className="flex mt-2">
           <div className="flex flex-col">
-            <p className="text-xs my-1 opacity-50">
-              {formatTimeAndDate(ticket.createdAt)}
-            </p>
+            <p className="text-xs my-1 opacity-50">{date}</p>
             <ProgressDisplay progress={ticket.progress} />
           </div>
           <div className="ml-auto flex items-end">
