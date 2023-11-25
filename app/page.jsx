@@ -12,7 +12,7 @@ const getTickets = async () => {
 };
 
 const Dashboard = async () => {
-  const { tickets } = await getTickets();
+  const { tickets } = (await getTickets()) || {};
   // console.log(tickets);
 
   const uniqeCategories = [
