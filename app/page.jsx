@@ -54,7 +54,7 @@ const Dashboard = async () => {
               key={categoryIndex}
               className="mb-4"
             >
-              <h2> {uniqeCategory}</h2>
+              <h2 className="mb-4"> {uniqeCategory}</h2>
               <div className="lg:grid grid-cols-2 xl:grid-cols-4">
                 {tickets
                   .filter((ticket) => ticket.category === uniqeCategory)

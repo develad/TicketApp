@@ -7,7 +7,7 @@ import StatusDisplay from './StatusDisplay';
 
 const TicketCard = ({ ticket }) => {
   return (
-    <div className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
+    <div className="flex flex-col bg-card hover:bg-card-hover rounded-lg shadow-lg p-3 my-2 md:mr-2 border-2 border-white">
       <div className="flex mb-3">
         <PriorityDisplay priority={ticket.priority} />
         <div className="ml-auto">
