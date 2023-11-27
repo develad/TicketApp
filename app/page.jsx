@@ -10,7 +10,7 @@ const formatDateAndTime = (rawTimeAndDate) => {
     // second: 'numeric',
     hour12: false,
   })
-    .format(new Date(rawTimeAndDate))
+    .format(new Date(new Date(rawTimeAndDate).getTime() + 1000 * 60 * 60 * 2))
     ?.split(',')
     ?.reverse()
     ?.join(' | ');
