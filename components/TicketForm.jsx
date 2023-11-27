@@ -158,7 +158,7 @@ const TicketForm = ({ ticket }) => {
           type="range"
           id="progress"
           name="progress"
-          value={formData.prograss}
+          value={formData.progress}
           min="0"
           max="100"
           onChange={handleChange}

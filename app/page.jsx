@@ -1,11 +1,37 @@
 import TicketCard from '@/components/TicketCard';
 
+const formatDateAndTime = (rawTimeAndDate) => {
+  const formated = new Intl.DateTimeFormat('he-IL', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    // second: 'numeric',
+    hour12: false,
+  })
+    .format(new Date(rawTimeAndDate))
+    ?.split(',')
+    ?.reverse()
+    ?.join(' | ');
+
+  return formated;
+};
+
 const getTickets = async () => {
   try {
     const res = await fetch('https://ticket-app-rouge.vercel.app/api/Tickets', {
       cache: 'no-store',
     });
-    return res.json();
+    const data = await res.json();
+
+    data.tickets.map((ticket) => {
+      ticket.date = formatDateAndTime(ticket.createdAt);
+      ticket.lastUpdate = formatDateAndTime(ticket.updatedAt);
+      return ticket;
+    });
+    // console.log(data);
+    return data;
   } catch (error) {
     console.log('Failed to get tickets ', error);
   }
