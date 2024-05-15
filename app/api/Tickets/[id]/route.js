@@ -1,4 +1,4 @@
-import Ticket from '@/app/(models)/Ticket';
+import { Ticket, BackUpTicket } from '@/app/(models)/Ticket';
 import { NextResponse } from 'next/server';
 
 export async function DELETE(req, { params }) {
@@ -30,6 +30,10 @@ export async function PUT(req, { params }) {
     const ticketData = body.formData;
 
     const updateTicketData = await Ticket.findByIdAndUpdate(id, {
+      ...ticketData,
+    });
+
+    await BackUpTicket.findByIdAndUpdate(id, {
       ...ticketData,
     });
     // await Ticket.findByIdAndDelete(id);

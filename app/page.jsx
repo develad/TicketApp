@@ -5,7 +5,7 @@ const formatDateAndTime = (rawTimeAndDate) => {
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
-    hour: 'numeric',
+    hour: '2-digit',
     minute: 'numeric',
     // second: 'numeric',
     hour12: false,
